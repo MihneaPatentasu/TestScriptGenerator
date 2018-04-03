@@ -131,7 +131,7 @@ public class MainWindow {
 		JList<String> foldersList = new JList<>(listModel);
 		scrollPane.setViewportView(foldersList);
 		
-		JButton removeFolderButton = new JButton("Remove folder from list");
+		JButton removeFolderButton = new JButton("Remove folder(s) from list");
 		removeFolderButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		removeFolderButton.setBounds(10, 153, 183, 23);
 		removeFolderButton.setEnabled(false);
