@@ -139,37 +139,26 @@ public class MainWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int index = foldersList.getSelectedIndex();
-				if(index<0) {
+				if(foldersList.getSelectedIndex()<0) {
 					JOptionPane.showMessageDialog(frame,
 						    "Please select/highlight a folder from the list!",
 						    "Remove test folder error",
 						    JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					listModel.remove(index);
+					for (int i=foldersList.getSelectedIndices().length-1; i>=0;i--)
+						listModel.remove(foldersList.getSelectedIndices()[i]);
 					int size=listModel.getSize();
 					if(size==0) {
 						removeFolderButton.setEnabled(false);
-					}
-					else {
-						if (index == listModel.getSize()) {
-				            index--;
-				        }
-						foldersList.setSelectedIndex(index);
-						foldersList.ensureIndexIsVisible(index);
 					}
 				}
 			}
 		});
 		lowerPanel.add(removeFolderButton);
 		
-		JButton addFolderButton = new JButton("Add folder with tests");
+		JButton addFolderButton = new JButton("Add folder(s) with tests");
 		addFolderButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		addFolderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		addFolderButton.setBounds(10, 119, 183, 23);
 		addFolderButton.addActionListener(new ActionListener() {
 			
