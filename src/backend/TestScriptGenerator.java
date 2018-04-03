@@ -13,7 +13,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class TestScriptGenerator {
-	public static int generateTestScript(String fileNameWithPath, ArrayList<String> paths) {
+	public static int generateTestScript(String fileNameWithPath, String[] paths) {
 		try (Writer writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileNameWithPath), "utf-8"))) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("import sys\n\n");
