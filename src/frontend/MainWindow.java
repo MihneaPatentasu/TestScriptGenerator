@@ -101,6 +101,7 @@ public class MainWindow {
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new File(lastBrowsedPath));
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setMultiSelectionEnabled(false);
 				chooser.setAcceptAllFileFilterUsed(false);
 				int returnVal = chooser.showDialog(frame.getContentPane(), "Save Path");
 				if(returnVal == JFileChooser.APPROVE_OPTION)
@@ -177,15 +178,19 @@ public class MainWindow {
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new File(lastBrowsedPath));
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setMultiSelectionEnabled(true);
 				chooser.setAcceptAllFileFilterUsed(false);
 				
 				int returnVal = chooser.showDialog(frame.getContentPane(), "Add folder");
 				if(returnVal == JFileChooser.APPROVE_OPTION)
 				{
-					lastBrowsedPath=chooser.getSelectedFile().getAbsolutePath();
-					listModel.addElement(lastBrowsedPath);
-					if(listModel.size()==1)
-						removeFolderButton.setEnabled(true);
+					File[] folders=chooser.getSelectedFiles();
+					for(File folder : folders) {
+						listModel.addElement(folder.getAbsolutePath());
+						if(listModel.size()==1)
+							removeFolderButton.setEnabled(true);
+					}
+					lastBrowsedPath=folders[folders.length-1].getAbsolutePath();
 					lastBrowsedPath=lastBrowsedPath.concat("//..");
 				}
 			}
